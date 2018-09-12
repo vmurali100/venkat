@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+    </div>
+    <script>
+        
+        var friends = ["Venky","Teja","Ramu","reddy"];
+        friends.push("prasad");// Push adds the element to the array by last index
+        friends.unshift("phani"); ///Unshift adds the elemnt in the array by index 0
+        friends.pop();// removes last elemnet in an array
+        friends.shift();/// it removes 1st element in an array
+       // friends.splice(1,2);
+        //friends.splice(1,0,"Nagendra");
+        friends.sort();  //it will sort out the elements in Order
+        friends.reverse();  // reverse the elements in an array
+
+        friends.splice(2,0,"Phani");// index,elemnt to be removed,added element(2,0,"venky")
+        var result ="";
+         for (i=0;i<friends.length;i++){
+          result = result+ friends[i]+"<br>";
+        }
+        document.getElementById("demo").innerHTML= result;
+        
+        </script>
+</body>
+</html>
