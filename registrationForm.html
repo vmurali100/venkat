@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Registration form</title>
+</head>
+
+<body>
+
+    <label>First name:</label><input type="text" id="txtfname"><br>
+
+    <label>Last name:</label><input type="text" id="txtlname"><br>
+
+    <label>Gender:</label><input type="text" id="txtgender"><br>
+
+    <label>Email:</label><input type="text" id="txtemail"><br>
+    <label>City:</label><input type="text" id="txtCity"><br>
+    <label>Zip:</label><input type="text" id="txtZip"><br>
+
+    <button onclick="submit()">Submit</button>
+    <button onclick="setData()">Set data</button>
+    <button onclick="updataData()">Update</button>
+    <button onclick="deleteData()">Delete</button>
+    <script>
+        var person = {
+            txtfname: "",
+            txtlname: "",
+            txtgender: "",
+            txtemail: "",
+            txtCity: "",
+            txtZip: ""
+
+        }
+
+
+        function submit() {
+            for (i in person) {
+                person[i] = document.getElementById(i).value;
+            }
+            console.log(person);
+            localStorage.setItem("person", JSON.stringify(person));
+
+        }
+
+        function setData() {
+            var myPerson = JSON.parse(localStorage.getItem("person"));
+            for (a in myPerson) {
+                document.getElementById(a).value = myPerson[a];
+            }
+            console.log(myPerson);
+        }
+
+        function updataData() {
+            var updatedData = {};
+            for (u in person) {
+                updatedData[u] = document.getElementById(u).value;
+            }
+            console.log(updatedData);
+            localStorage.setItem("updatedData", JSON.stringify(updatedData));
+        }
+
+        function deleteData() {
+            localStorage.clear()
+            console.log("deleted the data")
+        }
+    </script>
+
+</body>
+
+</html>
