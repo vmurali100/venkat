@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+
+    <button onclick="Retrive()">Get Data</button>
+
+    <script>
+        function Retrive() {
+
+            var Jsondata = new XMLHttpRequest(); //browser built-in for request data from a server
+
+            Jsondata.onreadystatechange = function() {
+
+                if (Jsondata.readyState == 4 && Jsondata.status == 200) {
+                    console.log(Jsondata.responseText) //get the response data as string
+
+                }
+            }
+            Jsondata.open("GET", "http://www.filltext.com/?rows=10&fname={firstName}&lname={lastName}&tel={phone|format}&address={streetAddress}&city={city}&state={usState|abbr}&zip={zip}&pretty=true"); //Specifies the request type 
+            Jsondata.send() //send the reqest
+
+        }
+    </script>
+
+
+</body>
+</html>
