@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!--    <button onclick="getData()">GetData</button>-->
+
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+
+                    <th>Id:</th>
+                    <th>Email:</th>
+                    <th>User Name:</th>
+                    <th>Password:</th>
+
+                    <th>Edit:</th>
+                    <th>Delete:</th>
+                </thead>
+                <tbody id="Tabledata">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <div class="col-md-3">
+            <form>
+                <div class="form-group">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" placeholder="Id">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" placeholder="E-mail">
+                </div>
+                <div class="form-group">
+                    <label for="username">User Name</label>
+                    <input type="text" class="form-control" id="username" placeholder="User Name">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" class="form-control" id="password" placeholder="Password">
+                </div>
+                <button type="button" class="btn btn-primary" id="update">Update</button>
+            </form>
+
+        </div>
+
+
+    </div>
+
+    <script>
+        var myData = JSON.parse(localStorage.getItem("data")); //converts data from text into an object
+        if (myData == null) { //if data null means check with the webserver request/ files
+            getData()
+        } else {
+            console.log(myData);
+            for (i = 0; i < myData.length; i++) {
+                console.log(myData[i]);
+                var mytr = document.createElement("tr");
+
+                for (a in myData[i]) {
+                    var mytd = document.createElement("td");
+                    mytd.innerHTML = myData[i][a]
+                    mytr.appendChild(mytd)
+                }
+
+                var Edittd = document.createElement("td");
+                var EditButton = document.createElement("button");
+                mytr.appendChild(Edittd);
+                Edittd.appendChild(EditButton);
+                EditButton.innerHTML = "Edit";
+                EditButton.setAttribute("class", "btn btn-primary");
+
+                var Deletetd = document.createElement("td");
+                var deleteButton = document.createElement("button");
+                mytr.appendChild(Deletetd);
+                Deletetd.appendChild(deleteButton);
+                deleteButton.innerHTML = "Delete";
+                deleteButton.setAttribute("class", "btn btn-danger");
+
+
+                EditButton.setAttribute("onclick", "Edit(" + i + ")");
+                deleteButton.setAttribute("onclick", "Delete(" + i + ")");
+                var gIndex = i;
+
+                function Edit(i) {
+                    var gIndex = i
+                    for (a in myData[i]) {
+                        document.getElementById(a).value = myData[i][a]
+                    }
+                }
+
+                document.getElementById("update").onclick = function() {
+
+                    console.log("clicked")
+                    var updatedInfo = {}
+                    for (u in myData[0]) {
+                        updatedInfo[u] = document.getElementById(u).value;
+                    }
+                    console.log(updatedInfo)
+                    myData[gIndex] = updatedInfo;
+
+                }
+
+                function Delete(i) {
+                    console.log("clicked")
+                    myData.splice(i, 1)
+                }
+
+
+                document.getElementById("Tabledata").appendChild(mytr);
+            }
+
+        }
+
+        function getData() {
+
+            var getJson = new XMLHttpRequest() //built-in object for retrive data from a server
+
+            getJson.onreadystatechange = function() {
+
+                if (getJson.readyState == 4 && getJson.status == 200) {
+                    console.log(getJson.responseText)
+                    var data = getJson.responseText;
+                    localStorage.setItem("data", getJson.responseText)
+                }
+
+            }
+            getJson.open("GET", "http://www.filltext.com/?rows=10&id={index}&email={email}&username={username}&password={randomString|5}&pretty=true");
+            getJson.send()
+        }
+    </script>
+
+
+
+</body>
+
+</html>
