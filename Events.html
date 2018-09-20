@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+
+    <!---Javascript Events Occurs when a user clicks on a HTML element it change the content---->
+
+    <h1 onclick="this.innerHTML='Hello'"> Change the contents</h1>
+
+
+    <!----call Event handler for this example----->
+
+    <h2 onclick="changeText(this)" id="demo">My Name is:</h2>
+
+    <!--   <button onclick="greet()">Message</button>-->
+    <!-----Assiagn events to HTML Attributs------>
+
+
+    <button id="btn">Message</button>
+    <p id="Message"></p>
+
+
+
+    <script>
+        //        function changeText(id) { // id.innerHTML = "Venkata Reddy"; //Bt calling Onclick Event Handlerin h2 elemet When click on h2 element it changes it's content // }
+
+        //        function greet() { // // var data = "welcome to Javascript" // document.getElementById("Message").innerHTML = data; // //alert("welcome to JS events") // }
+
+
+
+        //        document.getElementById("btn").onclick = function() { //Assign Evnets using HTML DOM // // var data = "Hello Javascript Events!!" // document.getElementById("Message").innerHTML = data; // }
+
+        document.getElementById("btn").addEventListener("click", function(event) { //WE can also add Events using HTML DOM by addEventListeners
+            var data = "Hello Javascript Events!!"
+            document.getElementById("Message").innerHTML = data;
+            //console.log(event.target.innerHTML);
+        });
+    </script>
+
+
+</body>
+
+</html>
