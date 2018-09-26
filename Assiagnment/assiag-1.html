@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>City Names</title>
+</head>
+<body>
+    
+<button type="button" onclick="CityNames()">Show city</button>
+
+<p id="demo"></p>
+<script>
+function CityNames(){
+
+  var cities = {
+      city1: 'Hyd',
+      city2: 'Chennai',
+      city3: 'Pune',
+  }
+  console.log(cities)
+  document.getElementById('demo').innerHTML = '1.'+ ''+cities.city1 + '<br>2.'+ ''+cities.city2 + '<br>3.'+ ''+cities.city1 
+}
+
+
+
+
+
+</script>
+
+</body>
+</html>

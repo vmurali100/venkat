@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>states Info</title>
+</head>
+<body>
+    
+<ul id="Staeslist"></ul>
+<p id="demo"></p>
+
+<input type="text" id="txtInput">
+<button type="button" id="btnStates">State Info</button>
+
+<script src="staesList.js"></script>
+
+
+<script>
+
+function displaystates(){
+    for(i=0;i<StatesInfo.length;i++){
+    var myLi =  document.createElement("li"); //create li elements to dsiplay steate names
+    myLi.innerHTML = StatesInfo[i].Name;
+    document.getElementById("Staeslist").appendChild(myLi)
+
+    }
+}
+
+displaystates()
+
+document.getElementById("Staeslist").onclick =  function(event){
+   
+   getFullStesInfo(event.target.innerHTML)
+}
+
+function getFullStesInfo(Name){
+    
+for(i=0;i<StatesInfo.length;i++ ){
+
+    for(a in StatesInfo[i]){
+        if(Name == StatesInfo[i][a]){
+            //console.log(StatesInfo[i])
+            var result = '';
+            for(b in StatesInfo[i]){  //iterates the properties of an object
+                //console.log(StatesInfo[i][b])
+                // result = StatesInfo[i][b]
+                result=result+b+':'+StatesInfo[i][b]+"<br>"
+            }
+            document.getElementById("demo").innerHTML = result
+        }
+    }    
+}
+
+}
+
+
+document.getElementById("btnStates").onclick = function(){
+
+document.getElementById("demo").innerHTML = '';
+var sname = document.getElementById("txtInput").value;
+
+
+
+}
+
+
+
+</script>
+</body>
+</html>
