@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,12 +12,13 @@
 
     <ul id="Staeslist"></ul>
     <p id="demo"></p>
-
+    <p id="divisions"></p>
     <input type="text" id="txtInput">
     <button type="button" id="btnStates">State Info</button>
     <p id="demo2"></p>
 
     <script src="staesList.js"></script>
+    <script src="districtsInfo.js"></script>
 
 
     <script>
@@ -42,19 +44,43 @@
 
                 for (a in StatesInfo[i]) {
                     if (Name == StatesInfo[i][a]) {
-                        //console.log(StatesInfo[i])
                         var result = '';
                         for (b in StatesInfo[i]) { //iterates the properties of an object
-                            //console.log(StatesInfo[i][b])
-                            // result = StatesInfo[i][b]
                             result = result + b + ':' + StatesInfo[i][b] + "<br>"
                         }
-                        document.getElementById("demo").innerHTML = result
+
+
+                        //                            for (d in AndhraDivisions[j]) {
+                        //                                var divresult = AndhraDivisions[d]
+                        //
+                        //                                if (Name == "Kerala") {
+                        //                                    document.getElementById("divisions").innerHTML = divresult
+                        //                                }
+                        //                            }
+                        //var divresult = AndhraDivisions[j] + "<br>"
+
+
+                        // }
+
+                        document.getElementById("demo").innerHTML = result;
+
+                        for (j = 0; j < AndhraDivisions.length; j++) {
+
+                            if (StatesInfo[i][a].Name == "kerala") {
+
+                                var disresult = AndhraDivisions[j]
+                                document.getElementById("divisions").innerHTML = disresult;
+                            }
+
+                        }
                     }
                 }
-            }
 
+            }
         }
+
+
+
 
 
         document.getElementById("btnStates").onclick = function() {
@@ -78,4 +104,5 @@
         }
     </script>
 </body>
+
 </html>
