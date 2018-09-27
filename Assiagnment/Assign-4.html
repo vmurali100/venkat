@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Document</title>
+    </head>
+<body>  
+    
+        <div class="row">
+        <div class="col-md-3">
+                <form>
+                        <div class="form-group">
+                          <label for="uname">User name</label>
+                          <input type="text" class="form-control" id="uname" placeholder="User name">
+                        </div>
+                        <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input type="email" class="form-control" id="uemail" placeholder="E-mail">
+                              </div>
+                              <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" id="upwd" placeholder="Password">
+                                </div>
+
+                                <div class="radio">
+                                    <label>Gender</label><br>
+                                        <label><input type="radio" name="optradio" id="umale">Male</label>
+                                        <label><input type="radio" name="optradio" id="ufemale">Female</label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>Marital status</label><br>
+                                        <label><input type="checkbox" value="" id="usingle">Single</label>                     
+                                        <label><input type="checkbox" value="" id="umarried">Married</label>
+                                      </div>
+                        <div class="form-group">
+                              <label for="tel">Tel</label>
+                              <input type="tel" class="form-control" id="utel" placeholder="Mobile Number">
+                            </div>
+                            
+                            <div class="form-group">
+                                  <label for="city">City</label>
+                                  <input type="text" class="form-control" id="ucity" placeholder="City">
+                            </div>
+            
+                        <button type="button"  class="btn btn-primary" id="records">Create</button>
+                      
+                      </form>
+                    </div>            
+                            <div class="col-md-9">
+                                    <table class="table">                  
+                                                <thead>
+                                                        <tr>
+                                                                <th>First Name</th>
+                                                                <th>E-mail</th>
+                                                                <th>Password</th>
+                                                                <th>Gender</th>
+                                                                <th>Marital status</th>
+                                                                <th>Mobile</th>
+                                                                <th>City</th>
+                                                        </tr>
+                                                    </thead>                   
+                                        <tbody id="TableData">
+                                    
+                                        </tbody>
+                                        </table>              
+                        </div>
+        </div>
+                     
+        
+    <script>  
+uname = '';
+uemail = '';
+upwd ='';
+umale = '';
+ufemale = '';
+usingle ='';
+umaried= '';
+utel ='';
+ucity = '';
+
+person = []
+document.getElementById("records").onclick = function(event){
+event.preventDefault()
+
+var user = {
+    uname:document.getElementById("uname").value,
+    uemail: document.getElementById("uemail").value,
+    upwd: document.getElementById("upwd").value,
+    umale :document.getElementById("umale").value,
+    ufemale: document.getElementById("ufemale").value,
+    usingle: document.getElementById("usingle").value,
+    umarried: document.getElementById("umarried").value,
+    utel:document.getElementById("utel").value,
+    ucity:document.getElementById("ucity").value,
+    }
+console.log(user)
+person.push(user)
+console.log(person)
+displaytable()
+
+}
+function displaytable(){
+document.getElementById("TableData").innerHTML = '';
+for(i=0;i<person.length;i++){
+var mytr = document.createElement("tr");
+    for(b in person[i]){
+        var tabletd = document.createElement("td");
+        tabletd.innerHTML = person[i][b]
+        mytr.appendChild(tabletd)
+    }
+    document.getElementById("TableData").appendChild(mytr)
+    }
+
+}
+
+    </script>
+    </body>
+    </html>
