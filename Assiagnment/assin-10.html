@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>states Info</title>
+</head>
+
+<style>
+#name_error{
+    color: red
+}
+</style>
+<body>
+
+    <ul id="Staeslist"></ul>
+    <p id="demo"></p>
+    <p id="divisions"></p>
+    <input type="text" id="txtInput">
+    <span class="error"><p id="name_error"></p></span>
+    <button type="button" id="btnStates">State Info</button>
+    <p id="demo2"></p>
+
+    <script src="staesList.js"></script>
+    <script src="districtsInfo.js"></script>
+
+
+    <script>
+        function displaystates() {
+            for (i = 0; i < StatesInfo.length; i++) {
+                var myLi = document.createElement("li"); //create li elements to dsiplay steate names
+                myLi.innerHTML = StatesInfo[i].Name;
+                document.getElementById("Staeslist").appendChild(myLi)
+
+            }
+        }
+
+        displaystates()
+
+        document.getElementById("Staeslist").onclick = function(event) {
+
+            getFullStesInfo(event.target.innerHTML)
+        }
+
+        function getFullStesInfo(Name) {
+
+            for (i = 0; i < StatesInfo.length; i++) {
+
+                for (a in StatesInfo[i]) {
+                    if (Name == StatesInfo[i][a]) {
+                        var result = '';
+                        for (b in StatesInfo[i]) { //iterates the properties of an object
+                            result = result + b + ':' + StatesInfo[i][b] + "<br>"
+                        }
+
+                        document.getElementById("demo").innerHTML = result;
+
+                        for (j = 0; j < AndhraDivisions.length; j++) {
+
+                            if (StatesInfo[i][a].Name == "kerala") {
+
+                                var disresult = AndhraDivisions[j]
+                                document.getElementById("divisions").innerHTML = disresult;
+                            }
+
+                        }
+                    }
+                }
+
+            }
+        }
+
+        document.getElementById("btnStates").onclick = function() {
+
+            document.getElementById("demo2").innerHTML = '';
+            
+                var sname = document.getElementById("txtInput").value;
+                if (sname == null || sname == "") {           ////Assiagnment -10
+                 nameError = "Please enter The statename";
+                document.getElementById("name_error").innerHTML = nameError; 
+    
+              } 
+
+                
+            for (i = 0; i < StatesInfo.length; i++) {
+
+                var result2 = '';
+                if (sname == StatesInfo[i].Name) {
+                    for (a in StatesInfo[i]) {
+                        console.log(StatesInfo[i][a])
+                        result2 = result2 + a + ':' + StatesInfo[i][a] + "<br>"
+
+                    }
+
+                    document.getElementById("demo2").innerHTML = result2;
+                }
+            }
+
+        }
+    
+
+    </script>
+</body>
+
+</html>
